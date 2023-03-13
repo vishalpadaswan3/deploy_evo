@@ -8,15 +8,19 @@ require('dotenv').config();
 
 const app = express();
 app.use(express.json());
-app.use(router);
-app.use(productRouter);
-
-
 
 app.get('/', (req, res) => {
     res.send('you have accessed the root route');
 }
 );
+
+
+app.use(router);
+app.use(productRouter);
+
+
+
+
 
 app.listen(process.env.port, async () => {
     try {
