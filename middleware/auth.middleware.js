@@ -5,7 +5,7 @@ require("dotenv").config();
 const auth = async (req, res, next) => {
     try {
         
-        const token = req.headers.authorization.split(" ")[1];
+        const token = req.headers.authorization
         const s = await blackModel.find({token});
         if(s.length>0){
             res.send("sorry You are logged out");

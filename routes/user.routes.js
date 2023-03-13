@@ -53,7 +53,7 @@ router.post("/login", async (req, res) => {
 
 router.get("/logout", async (req, res) => {
     try {
-        const token = req.headers.authorization.split(" ")[1];
+        const token = req.headers.authorization;
         const s = new blackModel({token});
         await s.save();
         res.send("User logged out");
@@ -64,7 +64,7 @@ router.get("/logout", async (req, res) => {
 
 router.get("/refresh", async (req, res) => {
     try {
-        const refresh_token = req.headers.authorization.split(" ")[1];
+        const refresh_token = req.headers.authorization;
         const s = jwt.verify(refresh_token, process.env.secret_2);
         const token = jwt.sign({ "user": s.user }, process.env.secret_1, { expiresIn: 60 })
         if(s){
